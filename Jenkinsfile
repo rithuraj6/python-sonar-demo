@@ -13,7 +13,7 @@ pipeline {
             steps {
                 sh '''
                 python3 -m venv venv
-                source venv/bin/activate
+                . venv/bin/activate
                 pip install -r requirements.txt
                 '''
             }
@@ -22,7 +22,7 @@ pipeline {
         stage('Run Tests') {
             steps {
                 sh '''
-                source venv/bin/activate
+                . venv/bin/activate
                 coverage run -m unittest discover tests
                 coverage xml
                 '''
@@ -33,7 +33,7 @@ pipeline {
             steps {
                 withSonarQubeEnv('sonarqube-server') {
                     sh '''
-                    source venv/bin/activate
+                    . venv/bin/activate
                     sonar-scanner
                     '''
                 }
