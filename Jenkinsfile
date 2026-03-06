@@ -5,7 +5,7 @@ pipeline {
 
         stage('Checkout Code') {
             steps {
-                git 'https://github.com/rithuraj6/python-sonar-demo.git'
+                checkout scm
             }
         }
 
@@ -45,5 +45,6 @@ pipeline {
                 waitForQualityGate abortPipeline: true
             }
         }
+
     }
 }
